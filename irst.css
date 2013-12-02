@@ -1,0 +1,46 @@
+body {
+    border-left: 5px solid red !important;
+}
+
+.irst-block {
+  color: #a30006 !important;
+  border-bottom: 1px solid rgba(163, 0, 6, 0.3);
+  margin-left: 16px;
+}
+.irst-block:hover {
+  color: #C21A01;
+}
+
+.irst-info {
+  padding-left: 100px;
+  margin-bottom: 40px;
+}
+.irst-info .irst-title {
+  float: right;
+}
+.irst-blocked-users {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.irst-blocked-user {
+  display: inline-block;
+  margin-right: 8px;
+  border-bottom: 1px solid #eee;
+  text-decoration: none !important;
+}
+.irst-blocked-user span {
+  color: rgba(163, 0, 6, 0.1);
+  margin-left: 4px;
+}
+.irst-blocked-user:hover,
+.irst-blocked-user:hover span
+{
+  color: rgba(163, 0, 6, 0.8);
+}
+.irst-crap-removed {
+  margin-top: 16px;
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  color: #999;
+}

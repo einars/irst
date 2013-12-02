@@ -1,0 +1,25 @@
+{ "manifest_version": 2
+, "name": "IRst komentāru filtrētājs"
+, "description": "Paplašinājums ļauj noslēpt nevēlamus komentārus ir.lv diskusijās"
+, "version": "1.0"
+, "permissions":
+    [ "storage"
+    , "http://www.irlv.lv/"
+    , "https://www.irlv.lv/"
+    , "http://irlv.lv/"
+    , "https://irlv.lv/"
+    ]
+, "content_scripts": [
+    { "matches":
+      [ "http://www.irlv.lv/*"
+      , "https://www.irlv.lv/*"
+      , "http://irlv.lv/*"
+      , "https://irlv.lv/*"
+      ]
+      , "css": [ "irst.css" ]
+      , "js": [ "jquery-3.1.1.min.js", "irst.js" ]
+    }]
+, "browser_action":
+    { "default_icon": "icon.png"
+    }
+}
