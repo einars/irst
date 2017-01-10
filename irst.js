@@ -65,6 +65,10 @@ function Irst() {
           author_id = $op.attr('irst-author-id'),
           action, $crap;
 
+      if (self.blocked_users[author_id] !== undefined) {
+        crap_removed += 1;
+      }
+
       if (self.blocked_users[author_id] !== undefined && ! is_hidden) {
         action = 'hide';
       }
@@ -75,7 +79,6 @@ function Irst() {
         // $crap = $op.find('.text, .avatar, .actions');
         $crap = $op;
         if (action === 'hide') {
-          crap_removed += 1;
           $crap.hide();
           $op.attr('irst-hidden', 'true');
         } else {
