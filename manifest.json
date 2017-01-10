@@ -2,7 +2,7 @@
 , "name": "Irst! komentāru filtrētājs"
 , "short_name" : "Irst!"
 , "description": "Paplašinājums ļauj noslēpt nevēlamus komentārus ir.lv diskusijās"
-, "version": "1.0.1"
+, "version": "1.0.2"
 , "permissions":
     [ "storage"
     , "http://www.irlv.lv/"
