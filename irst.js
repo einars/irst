@@ -1,16 +1,5 @@
 'use strict';
 
-var blocked_users = {
-  '2656': 'riņķī apkārt',
-  '3491': 'edge_indran',
-  '14974': 'fretka',
-  '1622': 'Andris Doveiks',
-  '50716': 'Kurmītis',
-  '59992': 'super_e-y-e',
-  '46043': 'super_e-y-e',
-  '69530': 'moonlight'
-};
-
 function Irst() {
 
   var self = this;

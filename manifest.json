@@ -1,7 +1,8 @@
 { "manifest_version": 2
-, "name": "IRst komentāru filtrētājs"
+, "name": "Irst! komentāru filtrētājs"
+, "short_name" : "Irst!"
 , "description": "Paplašinājums ļauj noslēpt nevēlamus komentārus ir.lv diskusijās"
-, "version": "1.0"
+, "version": "1.0.1"
 , "permissions":
     [ "storage"
     , "http://www.irlv.lv/"
