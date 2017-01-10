@@ -12,8 +12,6 @@ function Irst() {
     chrome.storage.sync.get('irst.blocked-users', function (items) {
       self.initialized = true;
       self.blocked_users = items['irst.blocked-users'] || {};
-      console.log(items);
-      console.log(self.blocked_users);
       self.update_page();
     });
   };
@@ -25,7 +23,6 @@ function Irst() {
         return;
       }
 
-      console.log('blocking ' + id + ' / ' + last_known_name);
       self.blocked_users[id] = last_known_name;
       chrome.storage.sync.set({'irst.blocked-users': self.blocked_users});
       self.update_page();
