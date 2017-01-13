@@ -17,16 +17,17 @@
 .irst-blocked-users {
   font-family: arial, sans-serif;
   font-size: 12px;
-  white-space: nowrap;
+  line-height: 150%;
 }
 .irst-blocked-user {
+  white-space: nowrap;
   display: inline-block;
   margin-right: 8px;
   border-bottom: 1px solid #eee;
   text-decoration: none !important;
 }
 .irst-blocked-user span {
-  color: rgba(163, 0, 6, 0.1);
+  color: rgba(163, 0, 6, 0.3);
   margin-left: 4px;
 }
 .irst-blocked-user:hover,
