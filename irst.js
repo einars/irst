@@ -77,7 +77,14 @@ function Irst() {
       }
       if (action) {
         // $crap = $op.find('.text, .avatar, .actions');
-        $crap = $op;
+        $crap = $($op); // kopija
+
+        // izvairāmies no troļļu barošanas: 
+        // šis ir top komentārs ar apakškomentāriem — rādām/slēpjam arī visas atbildes
+        var $next = $op.next(); 
+        if ($next.hasClass('opinion_list')) {
+          $crap = $crap.add($next);
+        }
         if (action === 'hide') {
           $crap.hide();
           $op.attr('irst-hidden', 'true');
