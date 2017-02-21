@@ -49,6 +49,23 @@ function Irst() {
   };
 
 
+  this.show_single_comment = function (elem) {
+    self.show($(elem).parents('.opinion').first());
+  }
+
+  this.hide = function ($op) {
+    $op.find('.body, .avatar').hide();
+    $op.find('.irst-show-btn').show();
+    $op.attr('irst-hidden', 'true');
+  };
+
+  this.show = function ($op) {
+    $op.find('.body, .avatar').show();
+    $op.find('.irst-show-btn').hide();
+    $op.find('.irst-block').hide();
+    $op.attr('irst-hidden', 'true');
+  };
+
   this.update_page = function () {
 
     var crap_removed = 0;
@@ -75,23 +92,10 @@ function Irst() {
       if (self.blocked_users[author_id] === undefined && is_hidden) {
         action = 'show';
       }
-      if (action) {
-        // $crap = $op.find('.text, .avatar, .actions');
-        $crap = $($op); // kopija
-
-        // izvairāmies no troļļu barošanas: 
-        // šis ir top komentārs ar apakškomentāriem — rādām/slēpjam arī visas atbildes
-        var $next = $op.next(); 
-        if ($next.hasClass('opinion_list')) {
-          $crap = $crap.add($next);
-        }
-        if (action === 'hide') {
-          $crap.hide();
-          $op.attr('irst-hidden', 'true');
-        } else {
-          $crap.show();
-          $op.attr('irst-hidden', 'false');
-        }
+      if (action === 'hide') {
+        self.hide($op);
+      } else if (action === 'show') {
+        self.show($op);
       }
     });
 
@@ -131,7 +135,8 @@ function Irst() {
         author_parts = author_href.split('/'),
         author_id = author_parts[2],
         author_name = $c.find('span.author:first').html(),
-        $block_btn = $('<a/>').attr('href', '#');
+        $block_btn = $('<a/>').attr('href', '#'),
+        $show_btn = $('<a/>').attr('href', '#').addClass('irst-show-btn');
     $c.attr('irst-initialized', 'true');
     $c.attr('irst-author-id', author_id);
     $c.attr('irst-hidden', 'false');
@@ -140,6 +145,11 @@ function Irst() {
       ev.preventDefault();
       self.block_user(author_id, author_name);
     });
+    $show_btn.html('Slēpts komentārs: ' + author_name + '. Parādīt?').click(function (ev) {
+      ev.preventDefault();
+      self.show_single_comment(this);
+    })
+    $c.find('.body').after($show_btn);
   };
 
   return this;
