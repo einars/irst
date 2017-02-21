@@ -127,7 +127,7 @@ function Irst() {
     }
 
     $('.irst-info').remove();
-    $('#opinions_list').after($irst);
+    $('#opinions_list').after($irst).show();
   };
 
   this.wrap_comment = function ($c) {
