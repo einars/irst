@@ -44,5 +44,6 @@
 .irst-show-btn {
   display: none;
   color: #999 !important;
+  padding-left: 100px;
 }
 #opinions_list { display: none }

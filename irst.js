@@ -86,10 +86,10 @@ function Irst() {
         crap_removed += 1;
       }
 
-      if (self.blocked_users[author_id] !== undefined && ! is_hidden) {
+      if (author_id !== undefined && self.blocked_users[author_id] !== undefined && ! is_hidden) {
         action = 'hide';
       }
-      if (self.blocked_users[author_id] === undefined && is_hidden) {
+      if (author_id !== undefined && self.blocked_users[author_id] === undefined && is_hidden) {
         action = 'show';
       }
       if (action === 'hide') {
@@ -104,15 +104,15 @@ function Irst() {
     var $blocked = $('<div/>').addClass('irst-blocked-users'),
         n_blocked = 0,
         k;
-    for(k in self.blocked_users) {
+    Object.keys(self.blocked_users).map(function (user_id) {
       n_blocked += 1;
-      var $a = $('<a/>').attr('href', '#').attr('irst-id', k).addClass('irst-blocked-user')
-        .html(self.blocked_users[k] + '<span>×</span>').click(function (ev) {
+      var $a = $('<a/>').attr('href', '#').attr('title', user_id).attr('irst-id', user_id).addClass('irst-blocked-user')
+        .html(self.blocked_users[user_id] + '<span>×</span>').click(function (ev) {
         ev.preventDefault();
         self.unblock_user($(this).attr('irst-id'));
       });
       $blocked.append($a);
-    }
+    });
     if (n_blocked) {
       $irst.append('<h4>Ignorētie lietotāji</h4>');
       $irst.append($blocked);
@@ -131,20 +131,23 @@ function Irst() {
   };
 
   this.wrap_comment = function ($c) {
-    var author_href = $c.find('.text a:first').attr('href'),
+    var author_href = $c.find('.avatar a').attr('href'),
         author_parts = author_href.split('/'),
         author_id = author_parts[2],
         author_name = $c.find('span.author:first').html(),
         $block_btn = $('<a/>').attr('href', '#'),
         $show_btn = $('<a/>').attr('href', '#').addClass('irst-show-btn');
+
     $c.attr('irst-initialized', 'true');
     $c.attr('irst-author-id', author_id);
     $c.attr('irst-hidden', 'false');
-    $c.find('.actions span.time').before($block_btn);
-    $block_btn.html('Ignorēt ' + author_name).addClass('irst-block').click(function (ev) {
-      ev.preventDefault();
-      self.block_user(author_id, author_name);
-    });
+    if (author_id !== undefined) {
+      $c.find('.actions span.time').before($block_btn);
+      $block_btn.html('Ignorēt ' + author_name).addClass('irst-block').click(function (ev) {
+          ev.preventDefault();
+          self.block_user(author_id, author_name);
+          });
+    }
     $show_btn.html('Slēpts komentārs: ' + author_name + '. Parādīt?').click(function (ev) {
       ev.preventDefault();
       self.show_single_comment(this);
